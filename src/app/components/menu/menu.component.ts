@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {EventEmitter} from '@angular/core';
 import { Output } from '@angular/core'; 
+import { ServicioMensajesService } from '../../services/servicio-mensajes.service';
 
 @Component({
   selector: 'app-menu',
@@ -8,6 +9,11 @@ import { Output } from '@angular/core';
   styleUrl: './menu.component.css'
 })
 export class MenuComponent {
+
+  constructor(
+    private servicioMensajesService: ServicioMensajesService
+  ) {}
+
    // Variable para controlar la visibilidad del menú
   menuVisible = false;
   // Variable que almacena la opción seleccionada por el usuario

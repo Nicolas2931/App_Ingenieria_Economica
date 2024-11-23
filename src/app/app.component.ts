@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import Swal from 'sweetalert2';
-import { ServicioMensajesService } from './servicio-mensajes.service';
+import { ServicioMensajesService } from './services/servicio-mensajes.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

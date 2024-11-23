@@ -4,11 +4,11 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ServicioMensajesService } from './servicio-mensajes.service';
-import { TableroComponent } from './tablero/tablero.component';
-import { MenuComponent } from './menu/menu.component';
-import { RazonesProporcionesComponent } from './razones-proporciones/razones-proporciones.component';
-import { InteresSimpleComponent } from './interes-simple/interes-simple.component';
+import { TableroComponent } from './layouts/tablero/tablero.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { RazonesProporcionesComponent } from './components/razones-proporciones/razones-proporciones.component';
+import { InteresSimpleComponent } from './components/interes-simple/interes-simple.component';
+import { ServicioMensajesService } from './services/servicio-mensajes.service';
 
 @NgModule({
   declarations: [
