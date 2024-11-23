@@ -1,0 +1,23 @@
+<div class="col-4">
+    <app-menu (opc)="recibirOpcion($event)"></app-menu>
+</div>
+<div class="container d-flex full-height-container" id="tablero">
+
+  <!-- Mostrar el bloque solo si la opción seleccionada es 0 -->
+  <div *ngIf="opcionSeleccionada === '0'" >
+    <img  clas="img-fluid" src="flecha-correcta.png" width="8%" height="10%" alt="Flecha" style="transform: rotate(180deg);">
+    <div class="card card-container align-items-center mt-5">
+        <img src="gatito.png" alt="Robot Saludando" class="img-fluid rounded mt-5" width="27%" height="27%">
+        <h1 style="color: #6008e2" class="encabezado">Selecciona una opción!</h1>
+    </div>
+    
+  </div>
+
+  <!-- Mostrar Razones y Proporciones si la opción es '1' -->
+  <app-razones-proporciones *ngIf="opcionSeleccionada === '1'"></app-razones-proporciones>
+
+  <!-- Mostrar Interés Simple si la opción es '2' -->
+  <app-interes-simple *ngIf="opcionSeleccionada === '2'"></app-interes-simple>
+
+</div>
+

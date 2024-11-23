@@ -1,0 +1,27 @@
+
+.card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    border: 0;
+    background-color: transparent;
+    z-index: 999; /* Coloca .card-container debajo de .menu-container */
+    position: relative; /* Asegura que el z-index funcione */
+}
+.card {
+    position: relative; /* Asegura que la tarjeta tenga su propio contexto para el z-index */
+    z-index: 997; /* Hace que la tarjeta esté encima de la superposición */
+}
+.full-height-container {
+    height: 100vh; /* 100% del viewport height */
+    background-color:white; /* Fondo blanco */
+    display: flex; /* Para usar Flexbox si deseas alinear contenido dentro */
+    flex-direction: column; /* Alineación por defecto en columna */
+}
+app-menu {
+    position: fixed; /* Coloca el menú de forma fija en la pantalla */
+    top: 3%; /* Alineado a la parte superior */
+    left: 2%; /* Alineado a la parte izquierda */
+}
+  
