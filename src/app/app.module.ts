@@ -9,6 +9,7 @@ import { MenuComponent } from './components/menu/menu.component';
 import { RazonesProporcionesComponent } from './components/razones-proporciones/razones-proporciones.component';
 import { InteresSimpleComponent } from './components/interes-simple/interes-simple.component';
 import { ServicioMensajesService } from './services/servicio-mensajes.service';
+import { TextInputComponent } from './components/inputs/text-input/text-input.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ServicioMensajesService } from './services/servicio-mensajes.service';
     TableroComponent,
     MenuComponent,
     RazonesProporcionesComponent,
-    InteresSimpleComponent
+    InteresSimpleComponent,
+    TextInputComponent
   ],
   imports: [
     BrowserModule,

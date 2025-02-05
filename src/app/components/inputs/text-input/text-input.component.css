@@ -1,0 +1,10 @@
+.text-input {
+    input {
+        padding: .5em 1em;
+        border-radius: 1em;
+        border: 1px solid var(--primary-color);
+        outline-width: 2px;
+        outline-color: var(--primary-color);
+        margin: .2rem .5rem;
+    }
+}
