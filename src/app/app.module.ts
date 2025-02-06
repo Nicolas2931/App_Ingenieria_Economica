@@ -10,6 +10,7 @@ import { RazonesProporcionesComponent } from './components/razones-proporciones/
 import { InteresSimpleComponent } from './components/interes-simple/interes-simple.component';
 import { ServicioMensajesService } from './services/servicio-mensajes.service';
 import { TextInputComponent } from './components/inputs/text-input/text-input.component';
+import { ButtonComponent } from './components/inputs/button/button.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { TextInputComponent } from './components/inputs/text-input/text-input.co
     MenuComponent,
     RazonesProporcionesComponent,
     InteresSimpleComponent,
-    TextInputComponent
+    TextInputComponent,
+    ButtonComponent
   ],
   imports: [
     BrowserModule,

@@ -7,5 +7,14 @@ import { Component, Input } from '@angular/core';
 })
 export class TextInputComponent {
   @Input()
-  inputType: string;
+  inputType: string = 'text';
+
+  @Input()
+  class: string = '';
+
+  @Input()
+  name: string = 'input';
+
+  @Input()
+  label: HTMLElement | string;
 }
