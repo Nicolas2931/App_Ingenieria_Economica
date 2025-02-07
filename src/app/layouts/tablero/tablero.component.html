@@ -13,11 +13,12 @@
     
   </div>
 
-  <!-- Mostrar Razones y Proporciones si la opción es '1' -->
-  <app-razones-proporciones *ngIf="opcionSeleccionada === '1'"></app-razones-proporciones>
-
-  <!-- Mostrar Interés Simple si la opción es '2' -->
-  <app-interes-simple *ngIf="opcionSeleccionada === '2'"></app-interes-simple>
+  <!-- Mostrar el componente según la opción seleccionada -->
+  <app-interes-compuesto *ngIf="opcionSeleccionada === '1'"></app-interes-compuesto>
+  <app-conversion-tasas *ngIf="opcionSeleccionada === '2'"></app-conversion-tasas>
+  <app-anualidades *ngIf="opcionSeleccionada === '3'"></app-anualidades>
+  <app-amortizacion *ngIf="opcionSeleccionada === '4'"></app-amortizacion>
+  <app-capitalizacion *ngIf="opcionSeleccionada === '5'"></app-capitalizacion>
 
 </div>
 
