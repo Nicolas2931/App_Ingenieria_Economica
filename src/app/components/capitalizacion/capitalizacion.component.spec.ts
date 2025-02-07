@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { InteresSimpleComponent } from './interes-simple.component';
+import { CapitalizacionComponent } from './capitalizacion.component';
 
-describe('InteresSimpleComponent', () => {
-  let component: InteresSimpleComponent;
-  let fixture: ComponentFixture<InteresSimpleComponent>;
+describe('CapitalizacionComponent', () => {
+  let component: CapitalizacionComponent;
+  let fixture: ComponentFixture<CapitalizacionComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [InteresSimpleComponent]
+      declarations: [CapitalizacionComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(InteresSimpleComponent);
+    fixture = TestBed.createComponent(CapitalizacionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
