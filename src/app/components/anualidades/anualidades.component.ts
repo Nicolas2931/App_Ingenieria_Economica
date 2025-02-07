@@ -6,5 +6,12 @@ import { Component } from '@angular/core';
   styleUrl: './anualidades.component.css'
 })
 export class AnualidadesComponent {
+    S:Number;
+    A:Number;
+    i:Number;
+    n:String;
 
+    calcularAnualidad(){
+      
+    }
 }
