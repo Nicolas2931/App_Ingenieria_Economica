@@ -24,7 +24,9 @@ export class ConversionTasasService {
   }
 
   conversion_tasas(i: number, n: Periodos, m: Periodos) {
-    return ((1+i)^(n/m)) - 1;
+    const exp = n/m;
+    const nueva_tasa = Math.pow((1+i), exp) - 1
+    return nueva_tasa;
   }
 
   convertir_a_nominal({ i, n, m }: convertir_tasa_props){
@@ -34,13 +36,13 @@ export class ConversionTasasService {
   }
 
   convertir_a_efectiva({ j, n, m }: convertir_tasa_props){
-    const i = this.nominal_efectiva(j,m)
+    const i = this.nominal_efectiva(j,n)
     const conversion = this.conversion_tasas(i,n,m)
     console.log("conversion", conversion)
-    return 
+    return conversion
   }
 
-  convertir_tasa({ i, j, n, m }: convertir_tasa_props) {
+  convertir({ i, j, n, m }: convertir_tasa_props) {
     if(i && !j) {
       return this.convertir_a_nominal({i,n,m})
     } 
