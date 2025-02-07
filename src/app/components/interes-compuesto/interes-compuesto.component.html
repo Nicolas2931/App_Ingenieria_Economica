@@ -1,37 +1,111 @@
 <div class="row bg-dark text-white">
   <div class="col-12" align="center">
-      <h1>INTERES COMPUESTO</h1>
+    <h1>INTERES COMPUESTO</h1>
   </div>
 </div>
-<div class="container">
+<div class="container" style="margin-left: 10px">
   <div class="row">
-      <div class="col-6">
-          <form class="form-group" id="form-valor-presente">
-              <label for="capital"><b>Valor Presente (P)</b></label><br>
-              <input type="number" class="form-control" id="capital" name="capital" placeholder="Ingrese Capital a Invertir"><br>
+    <div class="col-6">
+      <form class="form-group" id="form-valor-presente">
+        <label for="capital"><b>Valor Presente (P)</b></label
+        ><br />
+        <input
+          type="number"
+          class="form-control"
+          id="capital"
+          name="capital"
+          placeholder="Ingresar Capital a Invertir $"
+        /><br />
 
-              <label for="tipoTasa"><b>Seleccione el tipo de Tasa</b></label><br>
-              <input type='radio' id='tasaEfectiva' name="tipoTasa"> <label for='tasaEfectiva'>1 Tasa Efectiva (i)</label><br>
-              <input type='radio' id='tasaNominal' name="tipoTasa"> <label for='tasaNominal'>2 Tasa Nominal (j)</label><br>
-
-              <select class="form-select" id="periodo" name="periodo">
-                  <option value="mensual">Mensual</option>
-                  <option value="bimestral">Bimestral</option>
-                  <option value="trimestral">Trimestral</option>
-                  <option value="cuatrimestral">Cuatrimestral</option>
-                  <option value="semestral">Semestral</option>
-                  <option value="anual">Anual</option>
-              </select>
-          </form>
+        <label for="tipoTasa"><b>Seleccione el tipo de Tasa</b></label
+        ><br />
+        <input type="radio" id="tasaEfectiva" name="tipoTasa" />
+        <label for="tasaEfectiva"> 1. Tasa Efectiva (i)</label><br />
+        <input type="radio" id="tasaNominal" name="tipoTasa" />
+        <label for="tasaNominal"> 2. Tasa Nominal (j)</label><br />
+        <br />
+        <label for="periodo"><b>Seleccione Periodo</b></label
+        ><br />
+        <select
+          class="form-select"
+          id="periodo"
+          name="periodo"
+          title="Seleccione Periodo"
+        >
+          <option value="mensual">Mensual</option>
+          <option value="bimestral">Bimestral</option>
+          <option value="trimestral">Trimestral</option>
+          <option value="cuatrimestral">Cuatrimestral</option>
+          <option value="semestral">Semestral</option>
+          <option value="anual">Anual</option>
+        </select>
+        <br />
+        <label for="numeroDePeriodos"><b>Número de Periodos (n)</b></label>
+        <input
+          type="number"
+          id="numeroDePeriodos"
+          name="numeroDePeriodos"
+          placeholder="Numero de Periodos"
+          class="form-control"
+        />
+        <br />
+        <label for="tasa"><b>Ingrese Tasa de Interes(i)</b></label
+        ><br />
+        <input
+          type="number"
+          class="form-control"
+          id="tasa"
+          name="tasa"
+          placeholder="Tasa de Interes (0.00 - 1.00)"
+        /><br />
+      </form>
+      <div class="chute container__botones">
+        <button onclick="calcularInteres()" class="container__boton">
+          Calcular Interes (S)
+        </button>
+        <button
+          onclick="limpiarCampos()"
+          class="container__boton"
+          id="nuevoCalculo"
+        >
+          Nuevo Calculo
+        </button>
       </div>
-      <div class="col-6">
-          <form class="form-group" id="form-tasa-tiempo">
-              <label for="tasa"><b>Ingrese Tasa de Interes</b></label><br>
-              <input type="number" class="form-control" id="tasa" name="tasa" placeholder="Tasa de Interes"><br>
-
-              <label for="tiempo">Ingrese Tiempo de Inversion</label>
-              <input type="number" class="form-control" id="tiempo" name="tiempo" placeholder="Tiempo de Inversion">
+    </div>
+    <div class="col-1"></div>
+    <div class="col-5">
+      <div class="row"><h3>Formula</h3></div>
+      <div class="row bg-light">
+        <div class="container__formula" style="margin-top: 10px;">
+          <p>
+            S = P(1 + i)^n
+          </p>
+          <p>
+            <b>Donde:</b>
+          </p>
+          <p>
+            S = Valor Futuro
+          </p>
+          <p>
+            P = Valor Presente
+          </p>
+          <p>
+            i = Tasa de Interes
+          </p>
+          <p>
+            n = Numero de Periodos
+          </p>
+        </div>
+      <div class="row" style="margin-top: 15px;"><h3>Resultado</h3></div>
+      <div class="row bg-light">
+        <div class="container__resultado">
+          <form class="form-group" id="form-resultado">
+            <div id="caja-resultados" style="margin-top: 5px;">
+              Este es un mensaje importante.
+            </div>
           </form>
+        </div>
       </div>
+    </div>
   </div>
 </div>
