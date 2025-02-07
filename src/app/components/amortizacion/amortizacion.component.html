@@ -1,1 +1,15 @@
-<p>amortizacion works!</p>
+<div>
+    <label for="rows">Número de filas:</label>
+    <input type="number" id="rows" [(ngModel)]="rows">
+  
+    <label for="cols">Número de columnas:</label>
+    <input type="number" id="cols" [(ngModel)]="cols">
+  
+    <button (click)="generateTable()">Generar Tabla</button>
+  </div>
+  
+  <table *ngIf="table.length > 0">
+    <tr *ngFor="let row of table">
+      <td *ngFor="let cell of row">{{ cell }}</td>
+    </tr>
+  </table>
