@@ -1,1 +1,37 @@
-<p>interes-compuesto works!</p>
+<div class="row bg-dark text-white">
+  <div class="col-12" align="center">
+      <h1>INTERES COMPUESTO</h1>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+      <div class="col-6">
+          <form class="form-group" id="form-valor-presente">
+              <label for="capital"><b>Valor Presente (P)</b></label><br>
+              <input type="number" class="form-control" id="capital" name="capital" placeholder="Ingrese Capital a Invertir"><br>
+
+              <label for="tipoTasa"><b>Seleccione el tipo de Tasa</b></label><br>
+              <input type='radio' id='tasaEfectiva' name="tipoTasa"> <label for='tasaEfectiva'>1 Tasa Efectiva (i)</label><br>
+              <input type='radio' id='tasaNominal' name="tipoTasa"> <label for='tasaNominal'>2 Tasa Nominal (j)</label><br>
+
+              <select class="form-select" id="periodo" name="periodo">
+                  <option value="mensual">Mensual</option>
+                  <option value="bimestral">Bimestral</option>
+                  <option value="trimestral">Trimestral</option>
+                  <option value="cuatrimestral">Cuatrimestral</option>
+                  <option value="semestral">Semestral</option>
+                  <option value="anual">Anual</option>
+              </select>
+          </form>
+      </div>
+      <div class="col-6">
+          <form class="form-group" id="form-tasa-tiempo">
+              <label for="tasa"><b>Ingrese Tasa de Interes</b></label><br>
+              <input type="number" class="form-control" id="tasa" name="tasa" placeholder="Tasa de Interes"><br>
+
+              <label for="tiempo">Ingrese Tiempo de Inversion</label>
+              <input type="number" class="form-control" id="tiempo" name="tiempo" placeholder="Tiempo de Inversion">
+          </form>
+      </div>
+  </div>
+</div>
