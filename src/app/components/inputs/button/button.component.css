@@ -1,0 +1,14 @@
+.send-button {
+    background: var(--primary-color);
+    color: white;
+    outline-width: 0;
+    border: 0;
+    border-radius: 1em;
+    padding: .5em 1.5em;
+
+    &:hover {
+        background-color: #fff;
+        border: 1px solid var(--primary-color);
+        color: var(--primary-color);
+    }
+}

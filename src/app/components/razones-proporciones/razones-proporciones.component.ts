@@ -7,4 +7,18 @@ import { Component } from '@angular/core';
 })
 export class RazonesProporcionesComponent {
 
+
+  onSubmit(e: Event) {
+    e.preventDefault()
+    const formData = new FormData(e.target as HTMLFormElement)
+    let values = {}
+    formData.forEach((value, key) => {
+      values = { 
+        ...values,
+        [key]: value
+      }
+    })
+    console.log(values)
+  }
 }
+ 
