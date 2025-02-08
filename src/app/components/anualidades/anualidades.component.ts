@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { ServicioMensajesService } from '../../services/servicio-mensajes.service';
+import { ConversionTasasService } from '../../services/conversion-tasas.service';
+import { Periodos } from '../../services/periodos.enum';
+import { CalcularCuotaService } from '../../services/calcular-cuota.service';
 
 @Component({
   selector: 'app-anualidades',
@@ -13,18 +16,18 @@ export class AnualidadesComponent {
     i?: number;
     j?: number;
     n:number;
-    n_periodo:String;
-    tasa_periodo:String;
+    n_periodo:string;
+    tasa_periodo:string;
 
 
-    error_S: Boolean;
-    error_P: Boolean;
-    error_A: Boolean;
-    error_i: Boolean;
-    error_j: Boolean;
-    error_n: Boolean;
+    error_S: boolean;
+    error_P: boolean;
+    error_A: boolean;
+    error_i: boolean;
+    error_j: boolean;
+    error_n: boolean;
 
-    constructor(private servicio_mensajes:ServicioMensajesService){}
+    constructor(private servicio_mensajes:ServicioMensajesService, private servicio_tasa:ConversionTasasService, private servicio_cuota:CalcularCuotaService){}
     
 
     // Getters para deshabilitar los campos
@@ -59,39 +62,62 @@ export class AnualidadesComponent {
         return;
       }
 
-      if(this.n_periodo  != null && this.n_periodo  !== undefined && this.tasa_periodo != null && this.tasa_periodo !== undefined){
-
+      if(this.n_periodo == null && this.n_periodo  === undefined && this.tasa_periodo == null && this.tasa_periodo === undefined){
+        this.servicio_mensajes.mensaje_Error("Ups...", "Error: Es necesario ingresar ya sea el tipo de interes o período.");
+        return;
       }
 
-      if(this.n_periodo == this.tasa_periodo){
-        
+      //Calcular la tasa
+
+      if(this.i!== null && this.i !== undefined ){
+        if(this.n_periodo != this.tasa_periodo){
+          this.i = this.servicio_tasa.conversion_tasas((this.i/100),Periodos[this.tasa_periodo],Periodos[this.n_periodo]);
+        }
+        else{
+          this.i=this.i/100;
+        }
       }
-    
-      // Determinar qué calcular según las variables ingresadas
-      let tasaDecimal = this.i ? this.i / 100 : null; // Convertir porcentaje a decimal si existe
+      else{
+        this.i=this.servicio_tasa.convertir({m:Periodos[this.n_periodo], n:Periodos[this.tasa_periodo], j:(this.j/100) }) 
+        this.servicio_mensajes.mensaje_Exito("hola","i:" + this.i);
+      }
       
-      // Caso 1: Calcular S (Valor Futuro)
+      this.j=undefined;
+      
+      // Caso 1: Calcular S (Valor Futuro) o P (Valor Presente)
       if (this.A != null && this.i != null && this.n != null) {
-        this.S = this.A * ((Math.pow(1 + tasaDecimal, this.n) - 1) / tasaDecimal);
-        this.servicio_mensajes.mensaje_Exito("Cálculo Exitoso", `S (Valor Futuro) calculado: ${this.S}`);
+        this.S = this.servicio_cuota.calcular_S(this.A,this.i,this.n);
+        this.P = this.servicio_cuota.calcular_P(this.A,this.i,this.n);
+        this.servicio_mensajes.mensaje_Exito("Cálculo Exitoso", `S (Valor Futuro) calculado: ${this.S} y P (Valor presente) calculado: ${this.P}`);
         return;
       }
     
       // Caso 2: Calcular n (Número de períodos)
-      if (this.S != null && this.A != null && this.i != null) {
-        if (tasaDecimal === 0) {
-          this.servicio_mensajes.mensaje_Error("Ups...", "Error: La tasa de interés (i) no puede ser 0 para este cálculo.");
-          return;
-        }
-        this.n = Math.log((this.S * tasaDecimal / this.A) + 1) / Math.log(1 + tasaDecimal);
+      if ((this.S != null || this.P != null) && this.A != null && this.i != null) {
+        this.n = Math.log((this.S * this.i / this.A) + 1) / Math.log(1 + this.i);
         this.servicio_mensajes.mensaje_Exito("Cálculo Exitoso", `n (Número de períodos) calculado: ${this.n}`);
         return;
       }
-    
+
+      // Caso 3: Calcular A (Número de períodos)
+      if ((this.S != null || this.P != null) && this.n != null && this.i != null) {
+        if(this.S != null){
+          this.A = this.servicio_cuota.calcular_A_S(this.S,this.i,this.n);
+        }
+        else{
+          this.A = this.servicio_cuota.calcular_A_P(this.P,this.i,this.n);
+        }
+        this.servicio_mensajes.mensaje_Exito("Cálculo Exitoso", `A (Anualidad) calculada: ${this.A}`);
+        return;
+      }
+
+      this.i=this.i*100;
+
       // Si no se puede calcular ninguna variable
       this.servicio_mensajes.mensaje_Error("Ups...", "No hay suficientes datos para realizar el cálculo. Por favor, verifique los valores ingresados.");
     }
     
+
 
   validaciones(){
     // Reiniciar errores
@@ -121,21 +147,22 @@ export class AnualidadesComponent {
       return;
     }
     
-    if (this.i != null && this.i !== undefined  && (this.i < 0 || this.i > 100)) {
+    if (this.i != null && this.i !== undefined  && (this.i <= 0 || this.i > 100)) {
       this.error_i = true;
       this.servicio_mensajes.mensaje_Error("Ups...", "Error: La Tasa (i) debe estar entre el 0% a 100%.");
       return;
     }
     
-    if (this.j != null && this.j !== undefined && (this.j < 0 || this.j > 100)) {
+    if (this.j != null && this.j !== undefined && (this.j <= 0 || this.j > 100)) {
       this.error_j = true;
-      this.servicio_mensajes.mensaje_Error("Ups...", "Error: La Tasa (j) debe estar entre el 0% a 100%.");
+      this.servicio_mensajes.mensaje_Error("Ups...", "Error: La Tasa (j) debe estar entre el 0% a 100% (sin incluir el cero)");
       return;
     }
-    if (this.n != null && this.n !== undefined && (this.n < 0 || this.n>100)) {
+    if (this.n != null && this.n !== undefined && (this.n <= 0 || this.n>100)) {
       this.error_n = true;
-      this.servicio_mensajes.mensaje_Error("Ups...", "Error: El número de períodos (n) debe estar entre cero y 100 períodos");
+      this.servicio_mensajes.mensaje_Error("Ups...", "Error: El número de períodos (n) debe estar entre cero y 100 períodos (sin incluir el cero).");
       return;
     }
+
   }
 }
