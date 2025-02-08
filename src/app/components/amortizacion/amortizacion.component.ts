@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { ConversionTasasService } from '../../services/conversion-tasas.service'; 
+import { ServicioMensajesService } from '../../services/servicio-mensajes.service';
+import { CalcularCuotaService } from '../../services/calcular-cuota.service';
+import { Periodos } from '../../services/periodos.enum';
 
 @Component({
   selector: 'app-amortizacion',
@@ -10,7 +13,7 @@ import { ConversionTasasService } from '../../services/conversion-tasas.service'
 
   export class AmortizacionComponent {
 
-    constructor(private conversion: ConversionTasasService){}
+    constructor(private servicio_mensajes:ServicioMensajesService, private servicio_tasa:ConversionTasasService, private servicio_cuota:CalcularCuotaService){}
 
     rows: number = 0;
     cols: number = 5;
@@ -48,8 +51,10 @@ generateTable() {
   for (let i = 0; i <= this.n; i++) { 
       this.table[i] = [];
       
-      let amortizacion = this.calcularAmortizacion(i); // Calcula la amortización para esta fila
-      let interes = this.calcularInteres(saldo); // Calcula el interés basado en el saldo anterior
+      let cuota = this.servicio_cuota.calcular_A_P(this.p, this.i, this.n,);
+      let interes = this.calcularInteres(saldo); 
+      let amortizacion =  this.calcularamortizacion();
+      
 
       for (let j = 0; j < this.cols; j++) {
           if (j === 0) {
@@ -59,7 +64,9 @@ generateTable() {
           } else if (j === 2) {
               this.table[i][j] = interes.toFixed(2); // Tercera columna: Interés
           } else if (j === 3) {
-              this.table[i][j] = amortizacion.toFixed(2); // Cuarta columna: Amortización
+              this.table[i][j] = cuota.toFixed(2); // Cuarta columna: Amortización
+          } else if (j === 4){
+              this.table[i][j] = amortizacion.toFixed(2);
           } else {
               this.table[i][j] = `Fila ${i}, Col ${j}`;
           }
@@ -70,16 +77,40 @@ generateTable() {
   }
 }
 
-// Método para calcular la amortización (puede cambiar según el método de amortización)
-calcularAmortizacion(pago: number): number {
-  if (pago === 0) return 0; // La amortización inicial es 0
-  return this.p / this.n; // Método de amortización constante (puedes cambiarlo)
+calcularamortizacion(){
+  let amortizacion: number;
+  let primeraIteracion = true; 
+  let saldo = this.p;
+  let cuota = this.servicio_cuota.calcular_A_P(this.p, this.i, this.n,);
+  let interes = this.calcularInteres(saldo); 
+
+for (let i = 0; i < this.n;i++){
+  if (primeraIteracion) {
+    amortizacion = 0;
+    primeraIteracion = false;
+  } else {
+    amortizacion = cuota - interes;
+  }
+  return amortizacion;
+}
+
 }
 
 // Método para calcular el interés
 calcularInteres(saldo: number): number {
-  //if (i != null) return  this.conversion.convertir(this.i,this.j,this.n,);  
-  return saldo * (this.i / 100); // Se asume que la tasa ingresada es porcentual
+        if(this.i!== null && this.i !== undefined ){
+          if(this.n_periodo != this.tasa_periodo){
+            this.i = this.servicio_tasa.conversion_tasas((this.i/100),Periodos[this.tasa_periodo],Periodos[this.n_periodo]);
+          }
+          else{
+            this.i=this.i/100;
+          }
+        }
+        else{
+          this.i=this.servicio_tasa.convertir({m:Periodos[this.n_periodo], n:Periodos[this.tasa_periodo], j:(this.j/100) }) 
+          this.servicio_mensajes.mensaje_Exito("hola","i:" + this.i);
+        }
+  return saldo * this.i; 
 }
 
 // Método para calcular el nuevo saldo después de descontar la amortización

@@ -6,10 +6,10 @@
       <label class="form-label">Tasa de Interés %</label>
       <div class="d-flex">
         <input type="number" step="any" class="form-control me-2" id="tasaInteres" 
-          placeholder="Ingrese i" [(ngModel)]="i" name="tasaInteres" [disabled]="deshabilitarI" [ngStyle]="{'border': error_i ? '2px solid red' : ''}">
-        
-        <input type="number" step="any" class="form-control me-2" id="tasaNominal" 
-          placeholder="Ingrese j" [(ngModel)]="j" name="tasaNominal" [disabled]="deshabilitarJ">
+            placeholder="Ingrese i" [(ngModel)]="i" name="tasaInteres" [disabled]="deshabilitarI" [ngStyle]="{'border': error_i ? '2px solid red' : ''}">
+          
+          <input type="number" step="any" class="form-control me-2" id="tasaNominal" 
+            placeholder="Ingrese j" [(ngModel)]="j" name="tasaNominal" [disabled]="deshabilitarJ">
   
           <select class="form-select" id="periodo_i" [(ngModel)]="tasa_periodo" name="periodo" [ngStyle]="{'border': error_j ? '2px solid red' : ''}">
             <option value="MENSUAL">Mensual</option>
