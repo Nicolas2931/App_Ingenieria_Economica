@@ -15,7 +15,7 @@ export class CalcularCuotaService {
 
   calcular_A_P(P:number, i:number,n:number):number{
     let A:number;
-    A=P/((1-Math.pow(1 +i,-n)) / i) ;
+    A=(P*i)/((1-Math.pow(1 +i,-n))) ;
     return A;
   }
 
