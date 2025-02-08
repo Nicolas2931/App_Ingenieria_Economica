@@ -1,15 +1,61 @@
 <div>
-    <label for="rows">Número de filas:</label>
-    <input type="number" id="rows" [(ngModel)]="rows">
+    <label for="p">Monto:</label>
+    <input type="number" id="p" [(ngModel)]="p">
+
+    <div class="mb-3">
+      <label class="form-label">Tasa de Interés %</label>
+      <div class="d-flex">
+        <input type="number" step="any" class="form-control me-2" id="tasaInteres" 
+          placeholder="Ingrese i" [(ngModel)]="i" name="tasaInteres" [disabled]="deshabilitarI" [ngStyle]="{'border': error_i ? '2px solid red' : ''}">
+        
+        <input type="number" step="any" class="form-control me-2" id="tasaNominal" 
+          placeholder="Ingrese j" [(ngModel)]="j" name="tasaNominal" [disabled]="deshabilitarJ">
   
-    <label for="cols">Número de columnas:</label>
-    <input type="number" id="cols" [(ngModel)]="cols">
+          <select class="form-select" id="periodo_i" [(ngModel)]="tasa_periodo" name="periodo" [ngStyle]="{'border': error_j ? '2px solid red' : ''}">
+            <option value="MENSUAL">Mensual</option>
+            <option value="BIMESTRE">Bimestral</option>
+            <option value="TRIMESTRE">Trimestral</option>
+            <option value="CUATRIMESTRE">Cuatrimestral</option>
+            <option value="SEMESTRE">Semestral</option>
+            <option value="ANIO">Anual</option>
+          </select>
+      </div>
   
-    <button (click)="generateTable()">Generar Tabla</button>
+  <div class="mb-3">
+    <label for="periodo" class="form-label">Número de Periodos y Tipo</label>
+    <div class="d-flex">
+      <input type="number" class="form-control me-2" id="numPeriodos" placeholder="N° de periodos" [(ngModel)]="n" [ngStyle]="{'border': error_n ? '2px solid red' : ''}" name="numPeriodos">
+      <select class="form-select" id="periodo" [(ngModel)]="n_periodo" name="periodo">
+        <option value="MENSUAL">Mensual</option>
+        <option value="BIMESTRE">Bimestral</option>
+        <option value="TRIMESTRE">Trimestral</option>
+        <option value="CUATRIMESTRE">Cuatrimestral</option>
+        <option value="SEMESTRE">Semestral</option>
+        <option value="ANIO">Anual</option>
+      </select>
+    </div>
   </div>
+
+  <button (click)="generateTable()">Generar Tabla</button>
+</div>
   
-  <table *ngIf="table.length > 0">
-    <tr *ngFor="let row of table">
-      <td *ngFor="let cell of row">{{ cell }}</td>
-    </tr>
-  </table>
+<table *ngIf="table.length > 0">
+  <!-- Definir encabezados -->
+  <thead>
+      <tr>
+          <th>Periodo</th>
+          <th>Saldo</th>
+          <th>Interés</th>
+          <th>Cuota </th>
+          <th>Amortización </th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr *ngFor="let row of table">
+          <td *ngFor="let cell of row">{{ cell }}</td>
+      </tr>
+  </tbody>
+</table>
+
+
+  
