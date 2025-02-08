@@ -22,7 +22,7 @@ export class ConversionTasasService {
   efectiva_nominal(i: number, m:Periodos): number{
     return i * m;
   }
-
+//de i a i con diferentes periodos
   conversion_tasas(i: number, n: Periodos, m: Periodos) {
     const exp = n/m;
     const nueva_tasa = Math.pow((1+i), exp) - 1
@@ -42,6 +42,7 @@ export class ConversionTasasService {
     return conversion
   }
 
+  //de j a i o de i a j
   convertir({ i, j, n, m }: convertir_tasa_props) {
     if(i && !j) {
       return this.convertir_a_nominal({i,n,m})
