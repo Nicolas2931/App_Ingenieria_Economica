@@ -18,7 +18,7 @@ export class ConversionTasasService {
   nominal_efectiva(j: number, m: Periodos) {
     return j / m;
   }
-  
+
   efectiva_nominal(i: number, m:Periodos): number{
     return i * m;
   }
@@ -46,8 +46,8 @@ export class ConversionTasasService {
   convertir({ i, j, n, m }: convertir_tasa_props) {
     if(i && !j) {
       return this.convertir_a_nominal({i,n,m})
-    } 
-    
+    }
+
     return this.convertir_a_efectiva({ j, n, m })
   }
 }
