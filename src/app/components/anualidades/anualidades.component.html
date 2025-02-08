@@ -1,5 +1,6 @@
 <div class="container mt-4">
     <h2 class="text-center">Cálculo de Anualidad</h2>
+    <hr>
     <form>
         <div class="mb-3">
             <label class="form-label" style="margin-right: 15px;">Valor a Calcular</label>
@@ -47,7 +48,11 @@
           </select>
         </div>
       </div>
-      <button type="button" class="btn btn-primary mt-3" (click)="calcularAnualidad()">Calcular</button>
+      <div class="d-flex justify-content-between mt-3">
+        <button type="button" class="btn btn-primary btn-lg px-4" (click)="calcularAnualidad()">Calcular</button>
+        <button type="button" class="btn btn-danger btn-lg px-4" (click)="limpiarCampos()">Limpiar Campos</button>
+      </div>
+      
     </form>
   </div>
   

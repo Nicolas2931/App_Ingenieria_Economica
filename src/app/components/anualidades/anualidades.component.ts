@@ -111,12 +111,28 @@ export class AnualidadesComponent {
         return;
       }
 
-      this.i=this.i*100;
+      
+      //this.i=Math.round(this.i)/1000;
+      //this.i=this.i*100;
+      //this.i=parseFloat(this.i.toFixed(3));
 
       // Si no se puede calcular ninguna variable
       this.servicio_mensajes.mensaje_Error("Ups...", "No hay suficientes datos para realizar el cálculo. Por favor, verifique los valores ingresados.");
     }
-    
+  
+  limpiarCampos(){
+
+    this.S=undefined;
+    this.P=undefined;
+    this.A=undefined;
+    this.i=undefined;
+    this.j=undefined;
+    this.n=undefined;
+    this.n_periodo=undefined;
+    this.tasa_periodo=undefined;
+
+    this.servicio_mensajes.mensaje_Exito("Se han limpiado los campos!",null);
+  }
 
 
   validaciones(){
