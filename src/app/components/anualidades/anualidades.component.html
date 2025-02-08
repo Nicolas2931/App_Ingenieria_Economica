@@ -24,12 +24,12 @@
             placeholder="Ingrese j" [(ngModel)]="j" name="tasaNominal" [disabled]="deshabilitarJ">
 
             <select class="form-select" id="periodo_i" [(ngModel)]="tasa_periodo" name="periodo" [ngStyle]="{'border': error_j ? '2px solid red' : ''}">
-              <option value="mensual">Mensual</option>
-              <option value="bimestral">Bimestral</option>
-              <option value="trimestral">Trimestral</option>
-              <option value="cuatrimestral">Cuatrimestral</option>
-              <option value="semestral">Semestral</option>
-              <option value="anual">Anual</option>
+              <option value="MENSUAL">Mensual</option>
+              <option value="BIMESTRE">Bimestral</option>
+              <option value="TRIMESTRE">Trimestral</option>
+              <option value="CUATRIMESTRE">Cuatrimestral</option>
+              <option value="SEMESTRE">Semestral</option>
+              <option value="ANIO">Anual</option>
             </select>
         </div>
       </div>
@@ -38,12 +38,12 @@
         <div class="d-flex">
           <input type="number" class="form-control me-2" id="numPeriodos" placeholder="N° de periodos" [(ngModel)]="n" [ngStyle]="{'border': error_n ? '2px solid red' : ''}" name="numPeriodos">
           <select class="form-select" id="periodo" [(ngModel)]="n_periodo" name="periodo">
-            <option value="mensual">Mensual</option>
-            <option value="bimestral">Bimestral</option>
-            <option value="trimestral">Trimestral</option>
-            <option value="cuatrimestral">Cuatrimestral</option>
-            <option value="semestral">Semestral</option>
-            <option value="anual">Anual</option>
+            <option value="MENSUAL">Mensual</option>
+            <option value="BIMESTRE">Bimestral</option>
+            <option value="TRIMESTRE">Trimestral</option>
+            <option value="CUATRIMESTRE">Cuatrimestral</option>
+            <option value="SEMESTRE">Semestral</option>
+            <option value="ANIO">Anual</option>
           </select>
         </div>
       </div>
