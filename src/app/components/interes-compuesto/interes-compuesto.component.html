@@ -1,6 +1,6 @@
 <div class="row bg-dark text-white">
   <div class="col-12" align="center">
-    <h1>INTERES COMPUESTO</h1>
+    <h1>INTERÉS COMPUESTO</h1>
   </div>
 </div>
 
@@ -10,19 +10,19 @@
   <div class="row">
     <p><b>Operación a Realizar</b></p>
     <div class="col-3">
-      <input type="radio" id="valorFuturo" name="operacionSeleccionada" value="s" [(ngModel)]="operacionSeleccionada" required title="Valor Futuro" />
+      <input type="radio" id="valorFuturo" name="operacionSeleccionada" value="s" [(ngModel)]="operacionSeleccionada" required title="Valor Futuro" (change)="limpiarCampos()"/>
       <label for="tasaEfectiva"> Valor Futuro (S)</label>
     </div>
     <div class="col-3">
-      <input type="radio" id="valorPresente" name="operacionSeleccionada" value="p" [(ngModel)]="operacionSeleccionada" required title="Valor Futuro" />
+      <input type="radio" id="valorPresente" name="operacionSeleccionada" value="p" [(ngModel)]="operacionSeleccionada" required title="Valor Futuro" (change)="limpiarCampos()" />
       <label for="tasaEfectiva"> Valor Presente (P)</label>
     </div>
     <div class="col-3">
-      <input type="radio" id="tasa_de_interes" name="operacionSeleccionada" value="i_s" [(ngModel)]="operacionSeleccionada" required title="Valor Futuro" />
+      <input type="radio" id="tasa_de_interes" name="operacionSeleccionada" value="i_s" [(ngModel)]="operacionSeleccionada" required title="Valor Futuro" (change)="limpiarCampos()" />
       <label for="tasaEfectiva"> Tasa de Interes (i)</label>
     </div>
     <div class="col-3">
-      <input type="radio" id="numero_de_periodos" name="operacionSeleccionada" value="n" [(ngModel)]="operacionSeleccionada" required title="Valor Futuro" />
+      <input type="radio" id="numero_de_periodos" name="operacionSeleccionada" value="n" [(ngModel)]="operacionSeleccionada" required title="Valor Futuro" (change)="limpiarCampos()"/>
       <label for="tasaEfectiva"> Número de periodos (n)</label>
     </div>
   </div>
@@ -41,7 +41,7 @@
             id="capitalFuturo"
             name="capitalFuturo"
             [(ngModel)]="capitalFuturo"
-            placeholder="Ingresar Valor Futuro $"
+            placeholder="Ingresar Valor Futuro $ 50000"
             [disabled]="operacionSeleccionada === 's'"
             required
           />
@@ -54,7 +54,7 @@
           id="capital"
           name="capital"
           [(ngModel)]="capital"
-          placeholder="Ingresar Capital a Invertir $"
+          placeholder="Ingresar Capital a Invertir $ myor a 50000"
           [disabled]="operacionSeleccionada === 'p'"
           required
         />
@@ -109,13 +109,13 @@
           id="tasaInteres"
           [(ngModel)]="tasaInteres"
           name="tasaInteres"
-          placeholder="Tasa de Interes (0.00 - 1.00)"
+          placeholder="Tasa de Interes (1% - 100%)"
           [disabled]="operacionSeleccionada === 'i_s'"
         />
       </form>
 
       <div class="chute container__botones">
-        <button (click)="calcularInteres()" class="container__boton">
+        <button [disabled]="habilitarCalcular" (click)="calcularInteres()" class="container__boton">
           Calcular Interes (S)
         </button>
         <button
@@ -156,7 +156,7 @@
         <div class="container__resultado">
           <form class="form-group" id="form-resultado">
             <div id="caja-resultados" style="margin-top: 5px;">
-              Este es un mensaje importante.
+              Resultado: {{ resultado }}
             </div>
           </form>
         </div>
