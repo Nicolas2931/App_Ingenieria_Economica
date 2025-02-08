@@ -1,8 +1,8 @@
 export enum Periodos{
-    MENSUAL=1,
-    BIMESTRE=2,
-    TRIMESTRE=3,
-    CUATRIMESTRE=4,
-    SEMESTRE=5,
-    ANIO=12
+    MENSUAL=12,
+    BIMESTRE=6,
+    TRIMESTRE=4,
+    CUATRIMESTRE=3,
+    SEMESTRE=2,
+    ANIO=1
 }

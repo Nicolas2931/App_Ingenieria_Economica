@@ -1,29 +1,53 @@
 <div class="container mt-4">
     <h2 class="text-center">Cálculo de Anualidad</h2>
     <form>
-      <div class="mb-3">
-        <label for="valorFuturo" class="form-label">Valor Futuro (S)</label>
-        <input type="number" class="form-control" id="valorFuturo" placeholder="Ingrese el valor futuro" [(ngModel)]="S" name="valorFuturo">
-      </div>
+        <div class="mb-3">
+            <label class="form-label" style="margin-right: 15px;">Valor a Calcular</label>
+            <label *ngIf="error_S" class="text-danger">*El valor (S) ingresado debe ser mayor a cero.</label>
+            <label *ngIf="error_P" class="text-danger">*El valor (P) ingresado debe ser mayor a cero.</label>
+            <div class="d-flex">
+              <input type="number" class="form-control me-2" id="valorFuturo" placeholder="Ingrese S" [(ngModel)]="S" name="valorFuturo" [disabled]="deshabilitarS" [ngStyle]="{'border': error_S ? '2px solid red' : ''}">
+              <input type="number" class="form-control" id="valorPresente" placeholder="Ingrese P" [(ngModel)]="P" name="valorPresente" [disabled]="deshabilitarP" [ngStyle]="{'border': error_P? '2px solid red' : ''}">
+            </div>
+          </div>
       <div class="mb-3">
         <label for="anualidad" class="form-label">Anualidad (A)</label>
-        <input type="number" class="form-control" id="anualidad" placeholder="Ingrese la anualidad" [(ngModel)]="A" name="anualidad">
+        <input type="number" class="form-control" id="anualidad" placeholder="Ingrese la anualidad" [(ngModel)]="A" name="anualidad" [ngStyle]="{'border': error_A ? '2px solid red' : ''}">
       </div>
       <div class="mb-3">
-        <label for="tasaInteres" class="form-label">Tasa de Interés (i)</label>
-        <input type="number" step="any" class="form-control" id="tasaInteres" placeholder="Ingrese la tasa de interés" [(ngModel)]="i" name="tasaInteres">
+        <label class="form-label">Tasa de Interés %</label>
+        <div class="d-flex">
+          <input type="number" step="any" class="form-control me-2" id="tasaInteres" 
+            placeholder="Ingrese i" [(ngModel)]="i" name="tasaInteres" [disabled]="deshabilitarI" [ngStyle]="{'border': error_i ? '2px solid red' : ''}">
+          
+          <input type="number" step="any" class="form-control me-2" id="tasaNominal" 
+            placeholder="Ingrese j" [(ngModel)]="j" name="tasaNominal" [disabled]="deshabilitarJ">
+
+            <select class="form-select" id="periodo_i" [(ngModel)]="tasa_periodo" name="periodo" [ngStyle]="{'border': error_j ? '2px solid red' : ''}">
+              <option value="mensual">Mensual</option>
+              <option value="bimestral">Bimestral</option>
+              <option value="trimestral">Trimestral</option>
+              <option value="cuatrimestral">Cuatrimestral</option>
+              <option value="semestral">Semestral</option>
+              <option value="anual">Anual</option>
+            </select>
+        </div>
       </div>
       <div class="mb-3">
-        <label for="periodo" class="form-label">Periodo</label>
-        <select class="form-select" id="periodo" [(ngModel)]="n" name="periodo">
-          <option value="mensual">Mensual</option>
-          <option value="bimestral">Bimestral</option>
-          <option value="trimestral">Trimestral</option>
-          <option value="cuatrimestral">Cuatrimestral</option>
-          <option value="semestral">Semestral</option>
-          <option value="anual">Anual</option>
-        </select>
+        <label for="periodo" class="form-label">Número de Periodos y Tipo</label>
+        <div class="d-flex">
+          <input type="number" class="form-control me-2" id="numPeriodos" placeholder="N° de periodos" [(ngModel)]="n" [ngStyle]="{'border': error_n ? '2px solid red' : ''}" name="numPeriodos">
+          <select class="form-select" id="periodo" [(ngModel)]="n_periodo" name="periodo">
+            <option value="mensual">Mensual</option>
+            <option value="bimestral">Bimestral</option>
+            <option value="trimestral">Trimestral</option>
+            <option value="cuatrimestral">Cuatrimestral</option>
+            <option value="semestral">Semestral</option>
+            <option value="anual">Anual</option>
+          </select>
+        </div>
       </div>
-      <button type="button" class="btn btn-primary" (click)="calcularAnualidad()">Calcular</button>
+      <button type="button" class="btn btn-primary mt-3" (click)="calcularAnualidad()">Calcular</button>
     </form>
   </div>
+  
