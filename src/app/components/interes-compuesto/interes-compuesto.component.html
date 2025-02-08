@@ -54,7 +54,7 @@
           id="capital"
           name="capital"
           [(ngModel)]="capital"
-          placeholder="Ingresar Capital a Invertir $ myor a 50000"
+          placeholder="Ingresar Capital a Invertir $ mayor a 50000"
           [disabled]="operacionSeleccionada === 'p'"
           required
         />
@@ -64,11 +64,11 @@
 
           <div class="row">
             <div class="col">
-              <input type="radio" id="tasaEfectiva" name="tipoTasa" value="i" [(ngModel)]="tipoTasa" required />
+              <input type="radio" id="tasaEfectiva" name="tipoTasa" value="i" [(ngModel)]="tipoTasa" required  [disabled]="operacionSeleccionada === 'i_s'"/>
               <label for="tasaEfectiva"> 1. Tasa Efectiva (i)</label><br />
             </div>
             <div class="col">
-              <input type="radio" id="tasaNominal" name="tipoTasa" value="j"[(ngModel)]="tipoTasa" />
+              <input type="radio" id="tasaNominal" name="tipoTasa" value="j"[(ngModel)]="tipoTasa"  />
               <label for="tasaNominal"> 2. Tasa Nominal (j)</label><br />
             </div>
           </div>
@@ -80,15 +80,15 @@
           name="periodo"
           [(ngModel)]="periodo"
           title="Seleccione Periodo"
-          [disabled]="operacionSeleccionada === 'i_s'"
+          [disabled]="operacionSeleccionada === 'n'"
           required
         >
-          <option value="mensual">Mensual</option>
-          <option value="bimestral">Bimestral</option>
-          <option value="trimestral">Trimestral</option>
-          <option value="cuatrimestral">Cuatrimestral</option>
-          <option value="semestral">Semestral</option>
-          <option value="anual">Anual</option>
+          <option value="MENSUAL">Mensual</option>
+          <option value="BIMESTRE">Bimestral</option>
+          <option value="TRIMESTRE">Trimestral</option>
+          <option value="CUATRIMESTRE">Cuatrimestral</option>
+          <option value="SEMESTRE">Semestral</option>
+          <option value="ANIO">Anual</option>
         </select>
         <label for="numeroDePeriodos"><b>Número de Periodos (n)</b></label>
         <input
