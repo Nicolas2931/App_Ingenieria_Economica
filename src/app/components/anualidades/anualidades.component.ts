@@ -79,7 +79,6 @@ export class AnualidadesComponent {
       }
       else{
         this.i=this.servicio_tasa.convertir({m:Periodos[this.n_periodo], n:Periodos[this.tasa_periodo], j:(this.j/100) }) 
-        this.servicio_mensajes.mensaje_Exito("hola","i:" + this.i);
       }
       
       this.j=undefined;
