@@ -1,1 +1,76 @@
-<p>capitalizacion works!</p>
+<div class="container mt-4">
+    <h2 class="text-center">Cálculo de capitalización</h2>
+    <form>
+        <div class="mb-3">
+            <label class="form-label" style="margin-right: 15px;">Valor a capitalizar</label>
+            <label *ngIf="error_S" class="text-danger">*El valor (S) ingresado debe ser mayor a cero.</label>
+            <div class="d-flex">
+                <input type="number" class="form-control me-2" id="valorFuturo" placeholder="Ingrese S" [(ngModel)]="S"
+                    name="valorFuturo" [ngStyle]="{'border': error_S ? '2px solid red' : ''}">
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Tasa de Interés %</label>
+            <div class="d-flex">
+                <input type="number" step="any" class="form-control me-2" id="tasaInteres" placeholder="Ingrese i"
+                    [(ngModel)]="i" name="tasaInteres" [disabled]="deshabilitarI"
+                    [ngStyle]="{'border': error_i ? '2px solid red' : ''}">
+
+                <input type="number" step="any" class="form-control me-2" id="tasaNominal" placeholder="Ingrese j"
+                    [(ngModel)]="j" name="tasaNominal" [disabled]="deshabilitarJ">
+
+                <select class="form-select" id="periodo_i" [(ngModel)]="tasa_periodo" name="periodo"
+                    [ngStyle]="{'border': error_j ? '2px solid red' : ''}">
+                    <option value="MENSUAL">Mensual</option>
+                    <option value="BIMESTRE">Bimestral</option>
+                    <option value="TRIMESTRE">Trimestral</option>
+                    <option value="CUATRIMESTRE">Cuatrimestral</option>
+                    <option value="SEMESTRE">Semestral</option>
+                    <option value="ANIO">Anual</option>
+                </select>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="periodo" class="form-label">Número de Periodos y Tipo</label>
+            <div class="d-flex">
+                <input type="number" class="form-control me-2" id="numPeriodos" placeholder="N° de periodos"
+                    [(ngModel)]="n" [ngStyle]="{'border': error_n ? '2px solid red' : ''}" name="numPeriodos">
+                <select class="form-select" id="periodo" [(ngModel)]="n_periodo" name="periodo">
+                    <option value="MENSUAL">Mensual</option>
+                    <option value="BIMESTRE">Bimestral</option>
+                    <option value="TRIMESTRE">Trimestral</option>
+                    <option value="CUATRIMESTRE">Cuatrimestral</option>
+                    <option value="SEMESTRE">Semestral</option>
+                    <option value="ANIO">Anual</option>
+                </select>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="anualidad" class="form-label">Anualidad (A)</label>
+            <input type="number" class="form-control" id="anualidad" placeholder="Ingrese la anualidad" [(ngModel)]="A"
+            name="anualidad" [ngStyle]="{'border': error_A ? '2px solid red' : ''}" disabled>
+        </div>
+        <button type="button" class="btn btn-primary mt-3" (click)="calcularCapitalizacion()">Calcular</button>
+    </form>
+
+    <table class="table mt-4" *ngIf="tabla.length > 0">
+        <thead>
+          <tr>
+            <th scope="col">Periodo</th>
+            <th scope="col">Saldo</th>
+            <th scope="col">Interés</th>
+            <th scope="col">Cuota</th>
+            <th scope="col">Incremento</th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">
+          <tr *ngFor="let fila of tabla">
+            <th scope="fila">{{fila.periodo + 1}}</th>
+            <td>{{fila.saldo}}</td>
+            <td>{{fila.interes}}</td>
+            <td>{{fila.cuota}}</td>
+            <td>{{fila.incremento}}</td>
+          </tr>
+        </tbody>
+      </table>
+</div>
