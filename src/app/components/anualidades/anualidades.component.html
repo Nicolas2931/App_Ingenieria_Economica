@@ -10,14 +10,8 @@
         <input type="number" class="form-control" id="anualidad" placeholder="Ingrese la anualidad" [(ngModel)]="A" name="anualidad">
       </div>
       <div class="mb-3">
-        <label class="form-label">Tasa de Interés</label>
-        <div class="d-flex">
-            <input type="number" step="any" class="form-control me-2" id="tasaInteres" 
-            placeholder="Ingrese i" [(ngModel)]="i" name="tasaInteres" [disabled]="deshabilitarI">
-          
-          <input type="number" step="any" class="form-control" id="tasaNominal" 
-            placeholder="Ingrese j" [(ngModel)]="j" name="tasaNominal" [disabled]="deshabilitarJ">
-        </div>
+        <label for="tasaInteres" class="form-label">Tasa de Interés (i)</label>
+        <input type="number" step="any" class="form-control" id="tasaInteres" placeholder="Ingrese la tasa de interés" [(ngModel)]="i" name="tasaInteres">
       </div>
       <div class="mb-3">
         <label for="periodo" class="form-label">Periodo</label>
