@@ -11,7 +11,9 @@ export class AppComponent {
   num1: number; // Inicializa los valores
   num2: number;
   respuesta:boolean;
-  constructor(private servicio_mensajes:ServicioMensajesService){}
+  constructor(private servicio_mensajes:ServicioMensajesService){
+    
+  }
 
     //this.servicio_mensajes.mensaje_Exito("Felicitaciones","Se ha registrado su trabajo");
     async showSum() {
