@@ -59,21 +59,18 @@
           required
         />
 
-        <label for="tipoTasa"><b>Seleccione el tipo de Tasa</b></label
-        >
-
-          <div class="row">
-            <div class="col">
-              <input type="radio" id="tasaEfectiva" name="tipoTasa" value="i" [(ngModel)]="tipoTasa" required  [disabled]="operacionSeleccionada === 'i_s'"/>
-              <label for="tasaEfectiva"> 1. Tasa Efectiva (i)</label><br />
-            </div>
-            <div class="col">
-              <input type="radio" id="tasaNominal" name="tipoTasa" value="j"[(ngModel)]="tipoTasa"  />
-              <label for="tasaNominal"> 2. Tasa Nominal (j)</label><br />
-            </div>
-          </div>
-        <label for="periodo"><b>Seleccione Periodo</b></label
-        >
+        <label for="numeroDePeriodos"><b>Número de Periodos (n)</b></label>
+        <input
+          type="number"
+          id="numeroDePeriodos"
+          name="numeroDePeriodos"
+          placeholder="Numero de Periodos"
+          [(ngModel)]="numeroDePeriodos"
+          required
+          class="form-control"
+          [disabled]="operacionSeleccionada === 'n'"
+        />
+        <label for="periodo"><b>Seleccione Periodo</b></label>
         <select
           class="form-select"
           id="periodo"
@@ -90,28 +87,35 @@
           <option value="SEMESTRE">Semestral</option>
           <option value="ANIO">Anual</option>
         </select>
-        <label for="numeroDePeriodos"><b>Número de Periodos (n)</b></label>
-        <input
-          type="number"
-          id="numeroDePeriodos"
-          name="numeroDePeriodos"
-          placeholder="Numero de Periodos"
-          [(ngModel)]="numeroDePeriodos"
-          required
-          class="form-control"
-          [disabled]="operacionSeleccionada === 'n'"
-        />
+        
         <label for="tasa"><b>Ingrese Tasa de Interes(i)</b></label
+          >
+          <input
+            type="number"
+            class="form-control"
+            id="tasaInteres"
+            [(ngModel)]="tasaInteres"
+            name="tasaInteres"
+            placeholder="Tasa de Interes (1% - 100%)"
+            [disabled]="operacionSeleccionada === 'i_s'"
+          />
+        <label for="tipoTasa"><b>Seleccione el tipo de Tasa</b></label
         >
-        <input
-          type="number"
-          class="form-control"
-          id="tasaInteres"
-          [(ngModel)]="tasaInteres"
-          name="tasaInteres"
-          placeholder="Tasa de Interes (1% - 100%)"
-          [disabled]="operacionSeleccionada === 'i_s'"
-        />
+
+          <div class="row">
+            <div class="col">
+              <input type="radio" id="tasaEfectiva" name="tipoTasa" value="i" [(ngModel)]="tipoTasa" required  [disabled]="operacionSeleccionada === 'i_s'"/>
+              <label for="tasaEfectiva"> 1. Tasa Efectiva (i)</label><br />
+            </div>
+            <div class="col">
+              <input type="radio" id="tasaNominal" name="tipoTasa" value="j"[(ngModel)]="tipoTasa"  />
+              <label for="tasaNominal"> 2. Tasa Nominal (j)</label><br />
+            </div>
+          </div>
+
+
+
+
       </form>
 
       <div class="chute container__botones">

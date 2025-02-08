@@ -32,35 +32,9 @@ export class InteresCompuestoComponent {
   // Método para calcular el interés compuesto
   calcularInteres() {
     // Validar que los campos obligatorios estén llenos
-    /*console.log('Calculando interés compuesto...',this.operacionSeleccionada);
-    console.log('Capital:', this.capital);
-    console.log('Tipo de tasa:', this.tipoTasa);
-    console.log('Periodo:', this.periodo);
-    console.log('Número de periodos:', this.numeroDePeriodos);
-    console.log('Tasa de interés:', this.tasaInteres);
-    */
     console.log('Calculando interés compuesto...', this.operacionSeleccionada);
     this.validarCampos();
-    //s tanto a las tasa como el pago
-    //Espacio para converti tipo de tasa
-    //tasa_periodo->selec
-    //n-> numero de periodos
-    //tasa_periodo->selec tasa de interes
-    //n_periodo->selec numero de periodos y tipo
-    //i->tasa de interes
-    //j->tasa nominal
-    /*
-    if(this.tasaInteres!== null ){//i =tasa de interes
-      if(this.n_periodo != this.tasa_periodo){//tasa periodo_ selector
-        this.i = this.servicio_tasa.conversion_tasas((this.i/100),Periodos[this.tasa_periodo],Periodos[this.n_periodo]);
-      }
-      else{
-        this.i=this.i/100;
-      }
-    }
-    else{
-      this.i=this.servicio_tasa.convertir({m:Periodos[this.n_periodo], n:Periodos[this.tasa_periodo], j:(this.j/100) })
-    }*/
+
    if(this.tipoTasa === 'j'){//tasa nominal
     this.tasaInteres = this.servicio_tasa.nominal_efectiva((this.tasaInteres/100),Periodos[this.periodo]);
     //this.tasaInteres = this.servicio_tasa.efectiva_nominal({i:(this.tasaInteres/100),m:Periodos[this.periodo]});
@@ -81,6 +55,7 @@ export class InteresCompuestoComponent {
   limpiarCampos() {
     console.log('Limpiando campos...');
     this.miFormulario.resetForm();
+    this.tipoTasa = null;
     this.resultado = null;
     this.habilitarCalcular = false;
   }
@@ -130,16 +105,7 @@ export class InteresCompuestoComponent {
         return;
       }
     }
-    if (this.tipoTasa == '') {
-      alert('Debe seleccionar un tipo de tasa.');
-      this.habilitarCalcular = true;
-      return;
-    }
-    if (this.periodo == '' && this.operacionSeleccionada != 'i_s') {
-      alert('Debe seleccionar un periodo.');
-      this.habilitarCalcular = true;
-      return;
-    }
+    //select p
     if (
       isNaN(this.numeroDePeriodos) ||
       this.numeroDePeriodos <= 0 ||
@@ -150,6 +116,12 @@ export class InteresCompuestoComponent {
         this.habilitarCalcular = true;
         return;
       }
+    }
+
+    if (this.periodo == null && this.operacionSeleccionada != 'i_s') {
+      alert('Debe seleccionar un periodo.');
+      this.habilitarCalcular = true;
+      return;
     }
 
     if (
@@ -164,6 +136,13 @@ export class InteresCompuestoComponent {
         this.habilitarCalcular = true;
         return;
       }
+    }
+    //tipo tasa
+    console.log('Tipo de tasa: 2121', this.tipoTasa);
+    if (this.tipoTasa == null) {
+      alert('Debe seleccionar un tipo de tasa.');
+      this.habilitarCalcular = true;
+      return;
     }
 
     //validar inversión a largo plazo
