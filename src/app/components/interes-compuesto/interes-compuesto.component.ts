@@ -88,7 +88,7 @@ export class InteresCompuestoComponent {
   interesCompuesto(opcion: string, P: number, S: number, i: number, n: number) {
     //i= i/100;//convertir a porcentaje
     console.log('S == '+S);
-    
+
     switch (opcion) {
       case "s": // Calcula S (Valor Futuro)
         return console.log(this.resultado=(" S: "+(P * Math.pow(1 + i, n)).toFixed(3)));
@@ -182,6 +182,8 @@ export class InteresCompuestoComponent {
   }
   //funcion para tiempos numero de periodos(n) de acuerdo al periodo(semestral, anual, mensual, trimestral)
   tPeriodo(periodo: string, numeroDePeriodos: number) {
+    if(this.operacionSeleccionada === 'i_s')
+      return numeroDePeriodos;
     switch (periodo) {
       case 'MENSUAL':
         console.log('entro mensual'+numeroDePeriodos+' '+periodo);
